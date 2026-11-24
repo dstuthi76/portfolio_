@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Danduprolu Stuthi — Data Engineer</title>
+<meta name="description" content="Danduprolu Stuthi — data engineer at LatentView Analytics. Builds data quality, observability and MLOps platforms on Azure Databricks with PySpark, Unity Catalog, Delta Lake and MLflow.">
+<link rel="canonical" href="https://portfolio-dstuthi76.vercel.app/">
+<meta property="og:title" content="Danduprolu Stuthi — Data Engineer">
+<meta property="og:description" content="Data quality, observability and MLOps platforms on Azure Databricks.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://portfolio-dstuthi76.vercel.app/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------
+   Palette note: bronze / silver / gold are not decoration — they
+   are the medallion layers this whole site is about. Nothing else
+   uses them.
+   --------------------------------------------------------------- */
+:root{
+  color-scheme: dark;
+  --ink:#0A0F16;
+  --surface:#111A26;
+  --surface-2:#16212F;
+  --line:#22303F;
+  --line-soft:#1A2531;
+  --text:#DFE6EE;
+  --text-dim:#B5C2CE;
+  --muted:#8395A8;
+  --bronze:#CE8C5B;
+  --silver:#A9BACA;
+  --gold:#D9A441;
+  --flag:#D4744F;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --display:"Space Grotesk","IBM Plex Sans",-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --maxw:1040px;
+  --gut:24px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  margin:0;background:var(--ink);color:var(--text);
+  font-family:var(--sans);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+  background:rgba(10,15,22,.94);backdrop-filter:blur(8px);z-index:60;
+}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.025em;margin:0}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+
+/* ---------- nav ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  background:rgba(10,15,22,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:22px;height:62px}
+.brand{font-family:var(--display);font-weight:700;font-size:18px;text-decoration:none}
+.brand span{color:var(--gold)}
+.bar nav{margin-left:auto;display:flex;gap:20px;align-items:center}
+.bar nav a{text-decoration:none;color:var(--muted);font-size:14.5px;
+  padding-bottom:2px;border-bottom:1px solid transparent}
+.bar nav a:hover,.bar nav a.on{color:var(--text);border-bottom-color:var(--gold)}
+.bar nav a.resume-link{border:1px solid var(--line);border-radius:5px;padding:6px 12px;
+  color:var(--text);background:var(--surface);white-space:nowrap}
+.bar nav a.resume-link:hover{border-color:var(--gold);color:var(--gold)}
+@media (max-width:880px){
+  .bar nav{gap:16px;overflow-x:auto;scrollbar-width:none}
+  .bar nav::-webkit-scrollbar{display:none}
+}
+
+/* ---------- sections ---------- */
+section{padding:76px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.sec-head{margin-bottom:34px;max-width:70ch}
+.sec-head h2{font-weight:600;font-size:clamp(25px,3.2vw,33px);margin-bottom:8px}
+.sec-head p{margin:0;color:var(--muted)}
+
+/* ---------- hero ---------- */
+.hero{padding:70px 0 72px}
+.hero h1{font-weight:700;font-size:clamp(40px,7vw,68px);line-height:1.02;
+  letter-spacing:-.038em;margin-bottom:10px}
+.hero .role{font-size:17px;color:var(--gold);margin:0 0 24px;font-weight:500}
+.hero p.lede{font-size:clamp(18px,2.1vw,20px);max-width:56ch;margin:0 0 16px;line-height:1.5}
+.hero p.sub{color:var(--text-dim);max-width:62ch;margin:0 0 28px}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill{display:inline-block;text-decoration:none;border-radius:6px;padding:10px 16px;
+  font-size:14.5px;border:1px solid var(--line);background:var(--surface)}
+.pill:hover{border-color:var(--gold);color:var(--gold)}
+.pill.solid{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:500}
+.pill.solid:hover{background:#E9B655;color:var(--ink)}
+.open-note{margin:26px 0 0;color:var(--muted);font-size:14.5px}
+
+/* ---------- numbers ---------- */
+.figs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:44px}
+.fig{background:var(--surface);padding:20px 18px}
+.fig b{display:block;font-family:var(--display);font-weight:600;font-size:27px;letter-spacing:-.02em}
+.fig span{display:block;color:var(--muted);font-size:13.5px;margin-top:3px;line-height:1.4}
+@media (max-width:720px){.figs{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- experience ---------- */
+.job h3{font-weight:600;font-size:21px;margin-bottom:2px}
+.job .org{color:var(--gold);font-size:15px;margin:0 0 16px}
+.job ul{margin:0;padding-left:19px;color:var(--text-dim);font-size:16px}
+.job li{margin-bottom:9px}
+.job li:last-child{margin-bottom:0}
+
+/* ---------- projects ---------- */
+.case{border:1px solid var(--line);border-radius:8px;background:var(--surface);
+  padding:28px;margin-bottom:22px}
+.case:last-child{margin-bottom:0}
+.case-top{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;
+  justify-content:space-between;margin-bottom:8px}
+.case h3{font-weight:600;font-size:clamp(20px,2.4vw,24px)}
+.where{font-size:13px;color:var(--muted)}
+.where a{color:var(--silver)}
+.where a:hover{color:var(--gold)}
+.case>p{color:var(--text-dim);max-width:72ch;margin:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.cols.two{grid-template-columns:repeat(2,1fr)}
+.cols h4{font-size:14px;font-weight:600;margin-bottom:8px;color:var(--gold)}
+.cols ul{margin:0;padding-left:17px;color:var(--text-dim);font-size:14.5px;line-height:1.55}
+.cols li{margin-bottom:6px}
+@media (max-width:880px){.cols,.cols.two{grid-template-columns:1fr;gap:18px}.case{padding:22px 19px}}
+
+/* modules of the observability suite — a list, not six more cards */
+.modules{margin:24px 0 0;padding:22px 0 0;border-top:1px solid var(--line);
+  display:grid;gap:18px}
+.module{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;align-items:start}
+.module h4{font-size:15px;font-weight:600;color:var(--silver);line-height:1.35}
+.module p{margin:0;color:var(--text-dim);font-size:14.5px;line-height:1.55}
+@media (max-width:880px){.module{grid-template-columns:1fr;gap:4px}}
+
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.stack span{font-family:var(--mono);font-size:11.5px;color:var(--silver);
+  border:1px solid var(--line);border-radius:4px;padding:4px 9px}
+.links{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}
+.links a{font-size:13.5px;color:var(--gold);text-decoration:none;
+  border-bottom:1px solid rgba(217,164,65,.4)}
+.links a:hover{border-bottom-color:var(--gold)}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}
+@media (max-width:880px){.grid-2{grid-template-columns:1fr}}
+.mini{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:22px}
+.mini h3{font-weight:600;font-size:18px;margin-bottom:3px}
+.mini .where{display:block;margin-bottom:9px}
+.mini p{margin:0;font-size:14.5px;color:var(--text-dim)}
+
+/* ---------- rule engine demo ---------- */
+.demo{display:grid;grid-template-columns:minmax(0,310px) minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:920px){.demo{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.panel-head{padding:11px 15px;border-bottom:1px solid var(--line);font-family:var(--mono);
+  font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:10px}
+#batch-label{color:var(--bronze)}
+.rule{padding:12px 15px;border-bottom:1px solid var(--line-soft)}
+.rule:last-of-type{border-bottom:0}
+.rule-top{display:flex;align-items:flex-start;gap:10px}
+.rule input{margin:3px 0 0;accent-color:var(--gold);width:15px;height:15px;flex:0 0 auto}
+.rule-name{font-size:14.5px;line-height:1.3}
+.rule-crit{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);
+  margin-top:4px;word-break:break-word}
+.enf{margin:9px 0 0 25px;display:flex;gap:6px}
+.enf button{font-family:var(--mono);font-size:10.5px;padding:4px 8px;border-radius:4px;
+  cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--muted)}
+.enf button[aria-pressed="true"]{border-color:rgba(217,164,65,.7);color:var(--gold);
+  background:rgba(217,164,65,.08)}
+.run-row{padding:15px}
+.run-row button{width:100%;border:0;border-radius:6px;padding:12px;font-family:var(--sans);
+  font-size:15px;font-weight:500;background:var(--gold);color:var(--ink);cursor:pointer}
+.run-row button:hover{background:#E9B655}
+.run-row button:disabled{opacity:.5;cursor:default}
+
+.tbl-scroll{overflow-x:auto}
+.dq{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px}
+.dq th{text-align:left;padding:9px 12px;color:var(--muted);font-weight:400;
+  border-bottom:1px solid var(--line);white-space:nowrap}
+.dq td{padding:9px 12px;border-bottom:1px solid var(--line-soft);
+  white-space:nowrap;color:var(--text-dim)}
+.dq tr:last-child td{border-bottom:0}
+tr.v-pass td:first-child{box-shadow:inset 3px 0 0 var(--silver)}
+tr.v-audit td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+tr.v-block td:first-child{box-shadow:inset 3px 0 0 var(--flag)}
+tr.v-block td{color:#8D9AA8}
+.v-pass .v{color:var(--silver)}
+.v-audit .v{color:var(--gold)}
+.v-block .v{color:var(--flag)}
+.null{color:#5E6E80;font-style:italic}
+.runbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-top:0;
+  border-radius:0 0 8px 8px;overflow:hidden}
+.runbar div{background:var(--surface-2);padding:12px 14px}
+.runbar b{display:block;font-family:var(--display);font-size:19px;font-weight:600}
+.runbar span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+.bad{padding:11px 15px;border-bottom:1px solid var(--line-soft);font-family:var(--mono);
+  font-size:12px;color:var(--text-dim);display:flex;gap:12px;flex-wrap:wrap}
+.bad:last-child{border-bottom:0}
+.bad .sev{color:var(--flag)}
+.bad .sev.audit{color:var(--gold)}
+.empty{padding:15px;font-size:13.5px;color:var(--muted);margin:0}
+
+/* ---------- skills ---------- */
+.skills{display:grid;gap:0}
+.skill-row{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;
+  padding:20px 0;border-top:1px solid var(--line)}
+.skill-row:first-child{border-top:0;padding-top:0}
+.skill-row h3{font-weight:600;font-size:16px;color:var(--silver);line-height:1.4}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{border:1px solid var(--line);border-radius:5px;padding:6px 11px;font-size:14px;
+  background:var(--surface);display:inline-flex;align-items:baseline;gap:7px}
+.tag em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.tag.core{border-color:rgba(217,164,65,.45)}
+.tag.core em{color:var(--gold)}
+@media (max-width:880px){.skill-row{grid-template-columns:1fr;gap:12px}}
+
+/* ---------- certifications ---------- */
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.cert{border:1px solid var(--line);border-radius:7px;background:var(--surface);padding:17px 19px}
+.cert b{display:block;font-weight:500;font-size:15.5px;line-height:1.35}
+.cert .issuer{display:block;font-size:13.5px;color:var(--muted);margin:6px 0 11px}
+.cert .flag{font-family:var(--mono);font-size:10.5px;color:var(--muted);
+  border:1px solid var(--line);border-radius:3px;padding:2px 6px;
+  margin-left:6px;vertical-align:middle;font-weight:400}
+.cert a{font-size:13.5px;color:var(--gold);text-decoration:none;
+  border-bottom:1px solid rgba(217,164,65,.4)}
+.cert a:hover{border-bottom-color:var(--gold)}
+
+/* ---------- writing + contact ---------- */
+.row-link{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  text-decoration:none;border:1px solid var(--line);border-radius:7px;
+  background:var(--surface);padding:15px 18px}
+.row-link:hover{border-color:var(--gold)}
+.row-link b{font-weight:500;font-size:15.5px}
+.row-link em{display:block;font-style:normal;font-size:13.5px;color:var(--muted);margin-top:3px}
+.row-link>span:last-child{flex:0 0 auto;font-size:12.5px;color:var(--muted);
+  white-space:nowrap;text-align:right}
+.row-link:hover>span:last-child{color:var(--gold)}
+.stacklinks{display:flex;flex-direction:column;gap:11px}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:880px){.contact-grid{grid-template-columns:1fr;gap:26px}}
+.contact-grid p{margin:0;color:var(--text-dim);max-width:52ch}
+
+footer{border-top:1px solid var(--line);padding:28px 0 50px;color:var(--muted);font-size:13.5px}
+</style>
+</head>
+<body id="top">
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top">Stuthi<span>.</span></a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#demo">Demo</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+      <a class="resume-link" href="Danduprolu-Stuthi-Resume.pdf" download>Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Danduprolu Stuthi</h1>
+    <p class="role">Data engineer — data quality, observability and MLOps on Azure Databricks</p>
+    <p class="lede">I build the systems that decide whether data can be trusted: rule engines, platform observability and model pipelines that run every day.</p>
+    <p class="sub">At LatentView Analytics I own LakeWatch, the data quality platform governing ERP master data from SAP, Great Plains and SalesPad, a seven-module observability suite over Databricks system tables, and an MLflow framework that registers, promotes and monitors models.</p>
+    <div class="contact-row">
+      <a class="pill solid" href="#projects">See the work</a>
+      <a class="pill" href="Danduprolu-Stuthi-Resume.pdf" download>Download resume (PDF)</a>
+      <a class="pill" href="mailto:dstuthi7@gmail.com">dstuthi7@gmail.com</a>
+      <a class="pill" href="https://www.linkedin.com/in/danduprolu-stuthi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pill" href="https://github.com/dstuthi76" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="open-note">Open to data engineering and AI/ML engineering roles — India.</p>
+
+    <div class="figs">
+      <div class="fig"><b>19</b><span>rule types in the DQ engine</span></div>
+      <div class="fig"><b>11</b><span>governance and audit tables designed</span></div>
+      <div class="fig"><b>2,234</b><span>catalog tables mapped for RBAC</span></div>
+      <div class="fig"><b>8</b><span>open-source LLM packages, 58 tests</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Work</h2>
+      <p>Where everything below was built.</p>
+    </div>
+    <article class="job">
+      <h3>Data Engineer</h3>
+      <p class="org">LatentView Analytics — India</p>
+      <ul>
+        <li>Own LakeWatch end to end: a PySpark engine validating every incoming batch against versioned rules, plus the application where data stewards author those rules themselves.</li>
+        <li>Designed its governance schema — 11 config and audit tables for rules, approvals, metrics, violations and alerts — and the rule taxonomy and field-level data dictionaries stewards work from.</li>
+        <li>Delivered a seven-module observability suite over Databricks system tables: cost attribution and anomaly detection, query performance scoring, schema change tracking, SLA and volume-spike monitoring, and access and privacy auditing.</li>
+        <li>Built a config-driven MLOps registration framework on MLflow and Unity Catalog with champion/challenger promotion, and shipped supplier-delay and fulfilment-risk use cases on it.</li>
+        <li>Built an Airbyte ingestion framework on an Azure VM connecting Oracle, Azure SQL, Blob Storage and DynamoDB into the lakehouse, with schema-evolution handling and job-level logging.</li>
+        <li>Designed the access model for a 2,234-table catalog: naming conventions keyed to layer, scope and tier, provisioning-ready group lists, and bronze and silver grant mappings.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <p>Platforms I own at work, then the open-source and personal work. Code is linked where the project is mine to share.</p>
+    </div>
+
+    <article class="case">
+      <div class="case-top">
+        <h3>LakeWatch — data quality and observability platform</h3>
+        <span class="where">LatentView Analytics, in production</span>
+      </div>
+      <p>A full data quality platform for an ERP lakehouse: a PySpark engine that validates every incoming batch against versioned rules, and a web application where data stewards define those rules without writing code. It governs vendor, item and customer master data arriving from SAP, Great Plains and SalesPad.</p>
+      <div class="cols">
+        <div>
+          <h4>Execution engine</h4>
+          <ul>
+            <li>19 condition types, including referential checks against governed lookup tables</li>
+            <li>Rule versioning, so a failed record traces to the exact rule that caught it</li>
+            <li>Enforcement actions separating blocking failures from audit-only ones</li>
+            <li>Incremental batch selection by hash-key anti-join instead of full rescans</li>
+            <li>Clean and failed records split by row stamp, with a requeue job that revalidates fixes</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Management application</h4>
+          <ul>
+            <li>Flask and React app deployed as a Databricks App on Unity Catalog</li>
+            <li>Data-type-aware rule builder driven by live catalog metadata</li>
+            <li>LLM-backed rule recommendations from column profiles</li>
+            <li>Approval workflow, rule groups and email alerting through Microsoft Graph</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Design and governance</h4>
+          <ul>
+            <li>11 config and audit tables — rules, requests, metrics, logs, bad records, alerts</li>
+            <li>Rule taxonomy with exact JSON criteria formats per condition type</li>
+            <li>Field-level data dictionaries mapping ERP fields to rule categories</li>
+            <li>25-page design document covering schema, lifecycle and deployment</li>
+          </ul>
+        </div>
+      </div>
+      <div class="stack">
+        <span>PySpark</span><span>Delta Lake</span><span>Unity Catalog</span><span>Databricks Apps</span><span>Flask</span><span>React</span><span>Microsoft Graph API</span>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <h3>Lakehouse observability suite</h3>
+        <span class="where">LatentView Analytics, five monitoring modules</span>
+      </div>
+      <p>Five modules built on Unity Catalog system tables. Each one detects its own class of problem, alerts the people who own it, and reports into a dashboard — so cost, query performance, schema drift, SLA breaches and access anomalies are all visible in the same place.</p>
+      <div class="modules">
+        <div class="module">
+          <h4>Cost monitoring and anomaly detection</h4>
+          <p>DBU and USD cost attributed by job, cluster, warehouse and SKU from billing usage joined to list prices, with z-score outlier detection per cost series and a dashboard of month-over-month spend, top computes and 60-day averages.</p>
+        </div>
+        <div class="module">
+          <h4>Query observability and optimization</h4>
+          <p>Composite scoring ranks business-critical and poorly performing queries on frequency, duration, rows read and bytes scanned; an LLM returns rewrite and indexing recommendations for the worst offenders, attributed to whoever ran them.</p>
+        </div>
+        <div class="module">
+          <h4>Schema observability and downstream alerts</h4>
+          <p>Schema changes detected from table history, including multi-step data type changes, recorded in a versioned registry, mapped to downstream tables, notebooks, jobs, queries and dashboards through lineage APIs, and alerted to their owners — with rollback scripts per version.</p>
+        </div>
+        <div class="module">
+          <h4>SLA and volume spike monitoring</h4>
+          <p>Config-driven SLA thresholds checked against job run history with breach logging, and ingestion volume compared to per-table baselines so a spike is flagged rather than discovered later.</p>
+        </div>
+        <div class="module">
+          <h4>Security and privacy monitoring</h4>
+          <p>A 30-day access audit categorising failures, authentication methods and action types; dynamic tagging and masking of sensitive columns; permission auditing against least privilege; and Isolation Forest anomaly detection over nine per-user behaviour features including failure ratio, off-hours access and error counts.</p>
+        </div>
+      </div>
+      <div class="stack">
+        <span>Databricks system tables</span><span>Spark SQL</span><span>Python</span><span>scikit-learn</span><span>Databricks SQL dashboards</span>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <h3>LLM-driven data quality rule generation</h3>
+        <span class="where">LatentView Analytics</span>
+      </div>
+      <p>A pipeline that profiles a dataset — schema, null and distinct counts, numeric distribution, skew, kurtosis, top values — builds a structured prompt from that profile, and has an LLM return validation rules as JSON in Great Expectations format. Rules land in Unity Catalog for versioning and reuse, and run as a Databricks Workflow against the existing DQ framework and Delta Live Tables.</p>
+      <div class="stack">
+        <span>Meta Llama</span><span>Unity Catalog</span><span>Databricks Workflows</span><span>Delta Live Tables</span>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <h3>Airbyte ingestion framework</h3>
+        <span class="where">LatentView Analytics</span>
+      </div>
+      <p>A self-hosted framework moving data from Oracle, Azure SQL Server, Blob Storage and DynamoDB into the lakehouse in batch and streaming modes. Schema changes are detected automatically, alerted by email, and gated behind manual approval for critical sources. Connections, syncs and metadata are driven through the Airbyte API from Python, with per-job logging of status, records ingested and records rejected.</p>
+      <div class="stack">
+        <span>Airbyte OSS</span><span>Azure VM</span><span>Databricks</span><span>Python</span><span>REST API</span>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <h3>MLOps model registration framework</h3>
+        <span class="where">LatentView Analytics, internal platform</span>
+      </div>
+      <p>A config-driven framework taking a model from feature engineering through registration, promotion and monitoring without rewriting pipeline code per use case. Each use case supplies a config; the framework handles registration under Unity Catalog governance, champion and challenger evaluation with rule-based promotion, and a dashboard of run KPIs and drift indicators. Supplier delay prediction and fulfilment risk scoring both run on it.</p>
+      <div class="stack">
+        <span>MLflow</span><span>Unity Catalog</span><span>Python</span><span>scikit-learn</span>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <h3>llm-toolkit — eight tools for running LLM apps in production</h3>
+        <span class="where">Open source, MIT licensed</span>
+      </div>
+      <p>A monorepo of eight independently installable Python packages, each aimed at one failure mode that only appears once an LLM application is actually running: agent tracing, context pruning, model routing, structured-output reliability, privacy-preserving RAG and prompt regression testing. Every package ships an offline implementation of anything that would normally need a paid API, so all 58 tests run with no keys and no network. Switching to a real provider is one constructor argument.</p>
+      <div class="links">
+        <a href="https://github.com/dstuthi76/llm-toolkit" target="_blank" rel="noopener">github.com/dstuthi76/llm-toolkit</a>
+      </div>
+      <div class="stack">
+        <span>Python</span><span>LLM evaluation</span><span>RAG</span><span>Agent observability</span><span>Packaging</span>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-top">
+        <h3>ResQNet — offline-first flood response and parametric relief</h3>
+        <span class="where">Open source</span>
+      </div>
+      <p>A disaster-response platform for the case where the network is the first thing to fail. An SOS raised on a phone with no signal hops device to device until one of them reaches the internet; a control room ranks what arrives and explains the ranking; relief money is released by a contract that reads satellite data instead of waiting on paperwork.</p>
+      <div class="cols">
+        <div>
+          <h4>Mesh and trust</h4>
+          <ul>
+            <li>Android app relaying SOS packets phone to phone over Bluetooth and Wi-Fi Direct</li>
+            <li>Every packet signed with Ed25519, so a relayed message can’t be forged in transit</li>
+            <li>Rescue status travels back down the same mesh to the phone that raised it</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Triage</h4>
+          <ul>
+            <li>276 messy messages in Telugu, Tamil, Hindi, Hinglish and English become ~64 ranked cases</li>
+            <li>Every case shows why it ranks where it does, rather than emitting a bare score</li>
+            <li>Gemini when a key is present, rule-based extraction when not — the demo runs offline</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Relief payouts</h4>
+          <ul>
+            <li>Sentinel-1 radar change detection in Google Earth Engine gives hours flooded per zone</li>
+            <li>Solidity contract paying only at 48 hours flooded and two of three NGO confirmations</li>
+            <li>Only a salted hash and zone go on-chain; enrolment and SOS patterns checked for fraud</li>
+          </ul>
+        </div>
+      </div>
+      <div class="links">
+        <a href="https://github.com/dstuthi76/resqnet" target="_blank" rel="noopener">github.com/dstuthi76/resqnet</a>
+      </div>
+      <div class="stack">
+        <span>Python</span><span>Starlette</span><span>Flutter</span><span>Gemini API</span><span>Google Earth Engine</span><span>Solidity</span><span>Ed25519</span>
+      </div>
+    </article>
+
+    <div class="grid-2">
+      <article class="mini">
+        <h3>Snowflake + dbt sales analytics</h3>
+        <span class="where">Personal project</span>
+        <p>A TPC-H sales analytics pipeline built as a dbt project running natively on Snowflake — staging, intermediate and mart layers with tests and documented lineage. Built to map the modelling and quality patterns I use on Databricks onto warehouses, tasks and dbt Projects.</p>
+        <div class="stack"><span>Snowflake</span><span>dbt</span><span>SQL</span></div>
+      </article>
+
+      <article class="mini">
+        <h3>JanataLens — civic transparency platform</h3>
+        <span class="where">Build phase on Google Cloud</span>
+        <p>A citizen-facing platform for making Indian government data legible: a single source-cited dashboard linking schemes, spending and services. GCP-native architecture, currently at design and prototype stage.</p>
+        <div class="links">
+          <a href="https://github.com/dstuthi76/janatalens" target="_blank" rel="noopener">Repository</a>
+        </div>
+        <div class="stack"><span>GCP</span><span>BigQuery</span><span>Data ingestion</span></div>
+      </article>
+
+      <article class="mini">
+        <h3>FinSaathi — credit readiness copilot</h3>
+        <span class="where">IDBI Innovate 2026</span>
+        <p>An AI copilot that reads a small business’s bank statement and UPI activity and returns an explainable credit-readiness score — showing which signals moved the number, not just the number. Built as a working Streamlit app with a pitch deck.</p>
+        <div class="stack"><span>Python</span><span>Streamlit</span><span>Explainable scoring</span></div>
+      </article>
+
+      <article class="mini">
+        <h3>Plant Ops Copilot</h3>
+        <span class="where">AI Builder Hackathon 2026, team project</span>
+        <p>An AI copilot for plant operations, built with a team during the hackathon and submitted with a recorded walkthrough of the working prototype.</p>
+        <div class="links">
+          <a href="https://www.youtube.com/watch?v=3vnN7L3Y1UE" target="_blank" rel="noopener">Demo video</a>
+          <a href="https://github.com/EkaTantra/plant-ops-copilot" target="_blank" rel="noopener">Repository</a>
+        </div>
+        <div class="stack"><span>Python</span><span>AI copilot</span></div>
+      </article>
+
+      <article class="mini">
+        <h3>VAPT Agent</h3>
+        <span class="where">Personal, early stage</span>
+        <p>An agent-driven workflow for vulnerability assessment and penetration testing steps. Early in development; the repository is public and the first implementation is in place.</p>
+        <div class="links">
+          <a href="https://github.com/dstuthi76/vapt_agent" target="_blank" rel="noopener">Repository</a>
+        </div>
+        <div class="stack"><span>Python</span><span>Security</span><span>Agents</span></div>
+      </article>
+
+      <article class="mini">
+        <h3>Lakehouse RBAC framework</h3>
+        <span class="where">LatentView Analytics</span>
+        <p>The access model for a 2,234-table catalog: a group naming convention keyed to layer, scope and tier, provisioning-ready security group lists, and bronze and silver grant mappings documented for the platform team.</p>
+        <div class="stack"><span>Unity Catalog</span><span>Azure AD</span><span>Access modelling</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO ============ -->
+<section id="demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Run the rule engine</h2>
+      <p>A working miniature of what LakeWatch does nightly. Switch rules on or off, decide whether a failure blocks a record or is only logged, and validate a batch of vendor master records.</p>
+    </div>
+
+    <div class="demo">
+      <aside class="panel">
+        <div class="panel-head"><span>dq_rules · vendor_master</span><span id="rule-count"></span></div>
+        <div id="rule-list"></div>
+        <div class="run-row"><button id="run-btn" type="button">Validate batch</button></div>
+      </aside>
+
+      <div>
+        <div class="panel" style="border-radius:8px 8px 0 0">
+          <div class="panel-head">
+            <span id="batch-label">bronze.vendor_master, incoming batch</span>
+            <span id="run-stamp">not yet run</span>
+          </div>
+          <div class="tbl-scroll">
+            <table class="dq">
+              <thead><tr>
+                <th>vendor_id</th><th>vendor_name</th><th>country</th>
+                <th>tax_id</th><th>credit_limit</th><th>status</th><th>verdict</th>
+              </tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="runbar">
+          <div><b id="m-in">8</b><span>rows in batch</span></div>
+          <div><b id="m-pass">—</b><span>promoted to silver</span></div>
+          <div><b id="m-block">—</b><span>quarantined</span></div>
+          <div><b id="m-viol">—</b><span>violations logged</span></div>
+          <div><b id="m-rate">—</b><span>pass rate</span></div>
+        </div>
+
+        <div class="panel" style="margin-top:18px">
+          <div class="panel-head"><span>dq_bad_records · violations</span><span id="bad-count"></span></div>
+          <div id="bad-list"><p class="empty">Run the batch to see which rule caught what.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Technical skills</h2>
+      <p>Grouped by where they sit in the stack. The note on each tag is how often I use it, not a self-rated score.</p>
+    </div>
+    <div class="skills">
+      <div class="skill-row">
+        <h3>Languages and processing</h3>
+        <div class="tags">
+          <span class="tag core">Python <em>daily</em></span>
+          <span class="tag core">PySpark <em>daily</em></span>
+          <span class="tag core">SQL <em>daily</em></span>
+          <span class="tag">Spark SQL <em>daily</em></span>
+          <span class="tag">Pandas <em>regular</em></span>
+          <span class="tag">Bash <em>working</em></span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <h3>Lakehouse and platform</h3>
+        <div class="tags">
+          <span class="tag core">Azure Databricks <em>daily</em></span>
+          <span class="tag core">Unity Catalog <em>daily</em></span>
+          <span class="tag core">Delta Lake <em>daily</em></span>
+          <span class="tag">Databricks Workflows <em>daily</em></span>
+          <span class="tag">Databricks Apps <em>project use</em></span>
+          <span class="tag">Delta Live Tables <em>project use</em></span>
+          <span class="tag">Medallion architecture <em>daily</em></span>
+          <span class="tag">Azure ADLS <em>regular</em></span>
+          <span class="tag core">Snowflake <em>project use</em></span>
+          <span class="tag core">dbt <em>project use</em></span>
+          <span class="tag">Google Cloud <em>project use</em></span>
+          <span class="tag">BigQuery <em>project use</em></span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <h3>Data quality and governance</h3>
+        <div class="tags">
+          <span class="tag core">Rule engine design <em>built one</em></span>
+          <span class="tag">Great Expectations formats <em>project use</em></span>
+          <span class="tag">RBAC and access design <em>project use</em></span>
+          <span class="tag">Schema evolution handling <em>project use</em></span>
+          <span class="tag">Data dictionaries <em>regular</em></span>
+          <span class="tag">Audit and lineage modelling <em>regular</em></span>
+          <span class="tag">Incremental batch design <em>daily</em></span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <h3>Observability and monitoring</h3>
+        <div class="tags">
+          <span class="tag core">Databricks system tables <em>daily</em></span>
+          <span class="tag">Cost attribution <em>built one</em></span>
+          <span class="tag">Anomaly detection <em>z-score, Isolation Forest</em></span>
+          <span class="tag">SLA and volume monitoring <em>project use</em></span>
+          <span class="tag">Databricks SQL dashboards <em>regular</em></span>
+          <span class="tag">Email alerting via Graph <em>project use</em></span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <h3>ML and AI engineering</h3>
+        <div class="tags">
+          <span class="tag core">MLflow <em>project use</em></span>
+          <span class="tag">Model registry and promotion <em>built one</em></span>
+          <span class="tag">Feature engineering <em>project use</em></span>
+          <span class="tag">Model monitoring <em>project use</em></span>
+          <span class="tag">Classification and regression <em>project use</em></span>
+          <span class="tag core">LLM application tooling <em>published 8</em></span>
+          <span class="tag">RAG and retrieval <em>project use</em></span>
+          <span class="tag">LLM evaluation and regression testing <em>project use</em></span>
+          <span class="tag">Gemini API <em>project use</em></span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <h3>Application and tooling</h3>
+        <div class="tags">
+          <span class="tag">Flask <em>project use</em></span>
+          <span class="tag">React + Vite <em>project use</em></span>
+          <span class="tag">Streamlit <em>project use</em></span>
+          <span class="tag">Starlette <em>project use</em></span>
+          <span class="tag">Airbyte <em>project use</em></span>
+          <span class="tag">REST and Graph API integration <em>regular</em></span>
+          <span class="tag">Git <em>daily</em></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATIONS ============ =====================
+     One .cert block per certification, strongest first.
+     Still to fill: the three [bracketed] names — the two Databricks
+     credential pages and the AWS verify page render names only in
+     the browser, so type them in here.
+     Add <span class="flag">expired</span> inside <b> to mark a
+     lapsed credential; drop the <a> line if there's no public link.
+     ============================================================== -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Certifications</h2>
+      <p>Platform credentials behind the day job.</p>
+    </div>
+    <div class="certs">
+      <div class="cert">
+        <b>Professional Machine Learning Engineer</b>
+        <span class="issuer">Google Cloud</span>
+        <a href="https://www.credly.com/badges/5fb450de-1b34-4f73-9ea2-683402a0b0f1" target="_blank" rel="noopener">Verify credential</a>
+      </div>
+      <div class="cert">
+        <b>Databricks Certified Generative AI Engineer Associate</b>
+        <span class="issuer">Databricks</span>
+        <a href="https://credentials.databricks.com/01c9c82d-2326-4673-80e6-a6c9e8c0348c" target="_blank" rel="noopener">Verify credential</a>
+      </div>
+      <div class="cert">
+        <b>Databricks Certified Data Engineer Associate</b>
+        <span class="issuer">Databricks</span>
+        <a href="https://credentials.databricks.com/b6ac59f9-5e9d-450f-a599-a7c51ff50386" target="_blank" rel="noopener">Verify credential</a>
+      </div>
+      <div class="cert">
+        <b>AWS Certified Developer - Associate</b>
+        <span class="issuer">Amazon Web Services</span>
+        <span class="credential">Credential ID D1KSK4KJPBF418GR</span>
+        <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential" target="_blank" rel="noopener">Verify credential</a>
+      </div>
+      <div class="cert">
+        <b>Professional Data Engineer <span class="flag"></span></b>
+        <span class="issuer">Google Cloud</span>
+        <a href="https://www.credly.com/badges/9b5de6d2-113b-430e-bfc0-b9698ef33926" target="_blank" rel="noopener">Verify credential</a>
+      </div>
+      <div class="cert">
+        <b>AWS Academy Graduate — Cloud Foundations</b>
+        <span class="issuer">AWS Training and Certification</span>
+        <a href="https://www.credly.com/badges/05afa777-6d21-4ad6-acdc-c5347b60a93a" target="_blank" rel="noopener">Verify credential</a>
+      </div>
+      <div class="cert">
+        <b>Multicloud Network Associate <span class="flag"></span></b>
+        <span class="issuer">Aviatrix</span>
+        <a href="https://www.credly.com/badges/5ccd51fb-f7eb-4963-8fc5-d928b73f7bbe" target="_blank" rel="noopener">Verify credential</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ WRITING ============ -->
+<section id="writing">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Writing</h2>
+      <p>On lakehouse architecture and applied AI.</p>
+    </div>
+    <div class="stacklinks">
+      <a class="row-link" href="https://www.latentview.com/blog/deploying-ai-at-scale-building-reliable-model-serving-pipelines-with-databricks/" target="_blank" rel="noopener">
+        <span>
+          <b>Deploying AI at scale: building reliable model-serving pipelines with Databricks</b>
+          <em>How a model gets from a registered version to a governed serving endpoint — Unity Catalog aliases, shadow testing, fallback to the previous champion, scale-to-zero autoscaling, and latency alerts with runbooks attached.</em>
+        </span>
+        <span>LatentView blog</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Get in touch</h2>
+      <p>Open to data engineering and AI/ML engineering roles.</p>
+    </div>
+    <div class="contact-grid">
+      <p>If you’re building something where data quality, governance or ML pipelines are the hard part, I’d like to hear about it. I’m happy to walk through how LakeWatch is put together — the rule model is the interesting part.</p>
+      <div class="stacklinks">
+        <a class="row-link" href="mailto:dstuthi7@gmail.com"><span><b>Email</b></span><span>dstuthi7@gmail.com</span></a>
+        <a class="row-link" href="https://www.linkedin.com/in/danduprolu-stuthi/" target="_blank" rel="noopener"><span><b>LinkedIn</b></span><span>/in/danduprolu-stuthi</span></a>
+        <a class="row-link" href="https://github.com/dstuthi76" target="_blank" rel="noopener"><span><b>GitHub</b></span><span>@dstuthi76</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Danduprolu Stuthi — built with plain HTML, CSS and a little JavaScript.</div>
+</footer>
+
+<script>
+/* nav highlighting */
+(function(){
+  var links = [].slice.call(document.querySelectorAll('.bar nav a[href^="#"]'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(function(s){ io.observe(s); });
+})();
+
+/* rule engine demo */
+(function(){
+  var ROWS = [
+    {vendor_id:'V-1001', vendor_name:'Nordwind GmbH', country:'DE', tax_id:'DE440192', credit_limit:25000, status:'ACTIVE'},
+    {vendor_id:'V-1002', vendor_name:'Sri Logistics', country:'IN', tax_id:null,       credit_limit:12000, status:'ACTIVE'},
+    {vendor_id:'V-1003', vendor_name:'Acme Corp',     country:'ZZ', tax_id:'US120034', credit_limit:5000,  status:'ACTIVE'},
+    {vendor_id:'V-1004', vendor_name:'Vertex Supply', country:'US', tax_id:'US77',     credit_limit:-400,  status:'ACTIVE'},
+    {vendor_id:'V-1005', vendor_name:'Hanwa Trading', country:'SG', tax_id:'SG880431', credit_limit:18000, status:'PENDING'},
+    {vendor_id:'V-1001', vendor_name:'Nordwind GmbH', country:'DE', tax_id:'DE440192', credit_limit:25000, status:'ACTIVE'},
+    {vendor_id:'V-1006', vendor_name:'Kiran Metals',  country:'IN', tax_id:'IN551209', credit_limit:9000,  status:'HOLD'},
+    {vendor_id:'V-1007', vendor_name:'Delta Parts',   country:'US', tax_id:'US930117', credit_limit:0,     status:'INACTIVE'}
+  ];
+  var COUNTRIES = ['IN','US','DE','SG'];
+  var STATUSES  = ['ACTIVE','INACTIVE','HOLD'];
+
+  var RULES = [
+    {id:'R-01', type:'NOT_NULL', crit:'tax_id IS NOT NULL', on:true, enf:'BLOCK',
+     test:function(r){ return r.tax_id !== null && r.tax_id !== ''; }, msg:'tax_id is null'},
+    {id:'R-02', type:'REFERENCE_CHECK', crit:'country IN ref_country', on:true, enf:'BLOCK',
+     test:function(r){ return COUNTRIES.indexOf(r.country) > -1; }, msg:'country not in reference table'},
+    {id:'R-03', type:'RANGE_CHECK', crit:'credit_limit >= 0', on:true, enf:'BLOCK',
+     test:function(r){ return r.credit_limit >= 0; }, msg:'credit_limit below minimum'},
+    {id:'R-04', type:'UNIQUE', crit:'vendor_id unique within batch', on:true, enf:'BLOCK',
+     test:function(r,i,all){ for (var j=0;j<i;j++) if (all[j].vendor_id===r.vendor_id) return false; return true; },
+     msg:'duplicate vendor_id in batch'},
+    {id:'R-05', type:'ALLOWED_VALUES', crit:"status IN ('ACTIVE','INACTIVE','HOLD')", on:true, enf:'AUDIT',
+     test:function(r){ return STATUSES.indexOf(r.status) > -1; }, msg:'status outside allowed set'},
+    {id:'R-06', type:'REGEX_MATCH', crit:'tax_id ~ ^[A-Z]{2}[0-9]{6}$', on:true, enf:'AUDIT',
+     test:function(r){ return r.tax_id ? /^[A-Z]{2}[0-9]{6}$/.test(r.tax_id) : true; }, msg:'tax_id fails format check'}
+  ];
+
+  var ruleList = document.getElementById('rule-list');
+  var tbody = document.getElementById('rows');
+  if (!ruleList || !tbody) return;
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function set(id, v){ document.getElementById(id).textContent = v; }
+
+  function drawRules(){
+    ruleList.innerHTML = '';
+    RULES.forEach(function(rule, i){
+      var d = document.createElement('div');
+      d.className = 'rule';
+      d.innerHTML =
+        '<div class="rule-top">' +
+          '<input type="checkbox" id="r' + i + '"' + (rule.on ? ' checked' : '') + '>' +
+          '<label class="rule-name" for="r' + i + '">' + rule.type +
+            '<span class="rule-crit">' + esc(rule.crit) + '</span></label>' +
+        '</div>' +
+        '<div class="enf">' +
+          '<button type="button" data-enf="BLOCK" aria-pressed="' + (rule.enf==='BLOCK') + '">block + audit</button>' +
+          '<button type="button" data-enf="AUDIT" aria-pressed="' + (rule.enf==='AUDIT') + '">audit only</button>' +
+        '</div>';
+      d.querySelector('input').addEventListener('change', function(e){
+        rule.on = e.target.checked; countRules();
+      });
+      d.querySelectorAll('.enf button').forEach(function(b){
+        b.addEventListener('click', function(){
+          rule.enf = b.getAttribute('data-enf');
+          d.querySelectorAll('.enf button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+        });
+      });
+      ruleList.appendChild(d);
+    });
+    countRules();
+  }
+
+  function countRules(){
+    var n = RULES.filter(function(r){ return r.on; }).length;
+    set('rule-count', n + ' active');
+    document.getElementById('run-btn').disabled = n === 0;
+  }
+
+  function cell(v){ return (v === null || v === '') ? '<span class="null">null</span>' : esc(v); }
+
+  function drawRows(verdicts){
+    tbody.innerHTML = '';
+    ROWS.forEach(function(r, i){
+      var v = verdicts ? verdicts[i] : null;
+      var tr = document.createElement('tr');
+      if (v) tr.className = 'v-' + v;
+      var label = !v ? '—'
+        : '<span class="v">' + (v === 'pass' ? 'passed' : v === 'audit' ? 'passed, logged' : 'quarantined') + '</span>';
+      tr.innerHTML =
+        '<td>' + cell(r.vendor_id) + '</td><td>' + cell(r.vendor_name) + '</td>' +
+        '<td>' + cell(r.country) + '</td><td>' + cell(r.tax_id) + '</td>' +
+        '<td>' + cell(r.credit_limit) + '</td><td>' + cell(r.status) + '</td>' +
+        '<td>' + label + '</td>';
+      tbody.appendChild(tr);
+    });
+  }
+
+  function run(){
+    var active = RULES.filter(function(r){ return r.on; });
+    var verdicts = [], bad = [];
+
+    ROWS.forEach(function(row, i){
+      var blocked = false, logged = false;
+      active.forEach(function(rule){
+        if (rule.test(row, i, ROWS)) return;
+        if (rule.enf === 'BLOCK') blocked = true; else logged = true;
+        bad.push({ id: row.vendor_id, rule: rule.id, type: rule.type, msg: rule.msg, enf: rule.enf });
+      });
+      verdicts.push(blocked ? 'block' : (logged ? 'audit' : 'pass'));
+    });
+
+    drawRows(verdicts);
+
+    var passed = verdicts.filter(function(v){ return v !== 'block'; }).length;
+    set('m-pass', passed);
+    set('m-block', ROWS.length - passed);
+    set('m-viol', bad.length);
+    set('m-rate', Math.round(passed / ROWS.length * 100) + '%');
+    set('run-stamp', active.length + ' rules applied');
+    set('batch-label', 'bronze.vendor_master → silver.vendor_master');
+    set('bad-count', bad.length ? bad.length + ' rows' : '');
+
+    var list = document.getElementById('bad-list');
+    if (!bad.length) {
+      list.innerHTML = '<p class="empty">No violations. Every row satisfied the active rules.</p>';
+      return;
+    }
+    list.innerHTML = bad.map(function(b){
+      return '<div class="bad">' +
+        '<span>' + esc(b.id) + '</span>' +
+        '<span>' + b.rule + ' · ' + b.type + '</span>' +
+        '<span class="sev' + (b.enf === 'AUDIT' ? ' audit' : '') + '">' +
+          (b.enf === 'AUDIT' ? 'audit only' : 'blocked') + '</span>' +
+        '<span>' + esc(b.msg) + '</span></div>';
+    }).join('');
+  }
+
+  drawRules();
+  drawRows(null);
+  document.getElementById('run-btn').addEventListener('click', run);
+})();
+</script>
+</body>
+</html>
